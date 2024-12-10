@@ -8,6 +8,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List _trendingMovies = [];
+  final String api_key = '';
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
