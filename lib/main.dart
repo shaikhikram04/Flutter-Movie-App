@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_app/home.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  await dotenv.load();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
