@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_app/utils/modified_text.dart';
 import 'package:movie_app/widgets/movies_horizontal_list.dart';
+import 'package:movie_app/widgets/tv.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class Home extends StatefulWidget {
@@ -51,6 +52,10 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.grey[900],
       body: ListView(
         children: [
+          TvList(
+            tvList: _tvShow,
+            title: 'Popular TV Shows',
+          ),
           MoviesHorizontalList(
             moviesList: _trendingMovies,
             title: 'Trending Movies',
