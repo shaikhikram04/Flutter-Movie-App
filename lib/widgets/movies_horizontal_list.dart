@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/utils/modified_text.dart';
 
-class TopRatedMovies extends StatelessWidget {
-  const TopRatedMovies({super.key, required this.topRated});
+class MoviesHorizontalList extends StatelessWidget {
+  const MoviesHorizontalList({
+    super.key,
+    required this.moviesList,
+    required this.title,
+  });
 
-  final List topRated;
+  final List moviesList;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +18,8 @@ class TopRatedMovies extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ModifiedText(
-            text: 'Top Rated Movies',
+          ModifiedText(
+            text: title,
             color: Colors.white,
             fontSize: 26,
           ),
@@ -23,7 +28,7 @@ class TopRatedMovies extends StatelessWidget {
             height: 270,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: topRated.length,
+              itemCount: moviesList.length,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return InkWell(
@@ -39,7 +44,7 @@ class TopRatedMovies extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
                               image: NetworkImage(
-                                'https://image.tmdb.org/t/p/w500${topRated[index]['poster_path']}',
+                                'https://image.tmdb.org/t/p/w500${moviesList[index]['poster_path']}',
                               ),
                               fit: BoxFit.cover,
                             ),
@@ -48,8 +53,8 @@ class TopRatedMovies extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(top: 5),
                           child: ModifiedText(
-                            text: topRated[index]['title'] ??
-                                topRated[index]['name'],
+                            text: moviesList[index]['title'] ??
+                                moviesList[index]['name'],
                             color: Colors.white,
                             fontSize: 16,
                           ),
