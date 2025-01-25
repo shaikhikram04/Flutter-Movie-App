@@ -33,7 +33,9 @@ class _HomeState extends State<Home> {
       _topRatedMovies = topRatedResult['results'];
       _tvShow = tvResult['results'];
     });
-    print(_trendingMovies);
+    debugPrint('Trending: $_trendingMovies');
+    debugPrint('Top Rated: $_topRatedMovies');
+    debugPrint('TV Show: $_tvShow');
   }
 
   @override
