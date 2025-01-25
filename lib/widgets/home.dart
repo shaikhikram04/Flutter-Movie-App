@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:movie_app/utils/modified_text.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class Home extends StatefulWidget {
@@ -33,16 +34,17 @@ class _HomeState extends State<Home> {
       _topRatedMovies = topRatedResult['results'];
       _tvShow = tvResult['results'];
     });
-    debugPrint('Trending: $_trendingMovies');
-    debugPrint('Top Rated: $_topRatedMovies');
-    debugPrint('TV Show: $_tvShow');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Movie App'),
+        title: const ModifiedText(
+          text: 'Flutter Movie App',
+          color: Colors.white,
+          fontSize: 21,
+        ),
       ),
     );
   }

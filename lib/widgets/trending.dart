@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/utils/modified_text.dart';
 
 class TrendingMovies extends StatelessWidget {
   const TrendingMovies({super.key, required this.trending});
@@ -12,9 +13,10 @@ class TrendingMovies extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Trending Movies',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          const ModifiedText(
+            text: 'Trending Movies',
+            color: Colors.white,
+            fontSize: 20,
           ),
           const SizedBox(height: 10),
           SizedBox(
