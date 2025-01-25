@@ -18,6 +18,8 @@ class ModifiedText extends StatelessWidget {
     return Text(
       text,
       style: GoogleFonts.breeSerif(color: color, fontSize: fontSize),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 2,
     );
   }
 }

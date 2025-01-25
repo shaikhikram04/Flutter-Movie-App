@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_app/utils/modified_text.dart';
+import 'package:movie_app/widgets/top_rated.dart';
 import 'package:movie_app/widgets/trending.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
@@ -50,7 +51,10 @@ class _HomeState extends State<Home> {
       ),
       backgroundColor: Colors.grey[900],
       body: ListView(
-        children: [TrendingMovies(trending: _trendingMovies)],
+        children: [
+          TrendingMovies(trending: _trendingMovies),
+          TopRatedMovies(topRated: _topRatedMovies),
+        ],
       ),
     );
   }
