@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/description.dart';
 import 'package:movie_app/utils/modified_text.dart';
 
 class MoviesHorizontalList extends StatelessWidget {
@@ -31,8 +32,24 @@ class MoviesHorizontalList extends StatelessWidget {
               itemCount: moviesList.length,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
+                final movieData = moviesList[index];
+                final String movieName =
+                    movieData['title'] ?? movieData['name'];
+
+                const String initialUrl = 'https://image.tmdb.org/t/p/w500';
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Description(
+                        name: movieName,
+                        description: moviesList[index]['overview'],
+                        bannerUrl: initialUrl + movieData['backdrop_path'],
+                        posterUrl: initialUrl + movieData['poster_path'],
+                        vote: movieData['vote_average'].toString(),
+                        launchOn: movieData['release_date'],
+                      ),
+                    ));
+                  },
                   child: Container(
                     margin: const EdgeInsets.all(5),
                     width: 140,
@@ -44,7 +61,7 @@ class MoviesHorizontalList extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
                               image: NetworkImage(
-                                'https://image.tmdb.org/t/p/w500${moviesList[index]['poster_path']}',
+                                initialUrl + movieData['poster_path'],
                               ),
                               fit: BoxFit.cover,
                             ),
@@ -53,8 +70,7 @@ class MoviesHorizontalList extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(top: 5),
                           child: ModifiedText(
-                            text: moviesList[index]['title'] ??
-                                moviesList[index]['name'],
+                            text: movieName,
                             color: Colors.white,
                             fontSize: 16,
                           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/description.dart';
 import 'package:movie_app/utils/modified_text.dart';
 
 class TvList extends StatelessWidget {
@@ -31,21 +32,38 @@ class TvList extends StatelessWidget {
               itemCount: tvList.length,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
+                final tvData = tvList[index];
+                final String tvName = tvData['name'] ?? tvData['title'];
+
+                const String initialUrl = 'https://image.tmdb.org/t/p/w500';
+
+                String bannerUrl = initialUrl +
+                    (tvData['backdrop_path'] ?? tvData['poster_path']);
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Description(
+                        name: tvName,
+                        description: tvData['overview'],
+                        bannerUrl: bannerUrl,
+                        posterUrl: initialUrl + tvData['poster_path'],
+                        vote: tvData['vote_average'].toString(),
+                        launchOn: tvData['first_air_date'],
+                      ),
+                    ));
+                  },
                   child: Container(
                     margin: const EdgeInsets.all(5),
                     width: 250,
                     child: Column(
+                      spacing: 10,
                       children: [
                         Container(
                           height: 140,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
-                              image: NetworkImage(
-                                'https://image.tmdb.org/t/p/w500${tvList[index]['backdrop_path']}',
-                              ),
+                              image: NetworkImage(bannerUrl),
                               fit: BoxFit.cover,
                             ),
                           ),

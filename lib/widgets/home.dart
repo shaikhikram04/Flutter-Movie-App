@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
       _topRatedMovies = topRatedResult['results'];
       _tvShow = tvResult['results'];
     });
-    debugPrint('Trending: $_trendingMovies');
+    debugPrint('Tv Show: $_tvShow');
   }
 
   @override
@@ -44,12 +44,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: const ModifiedText(
-          text: 'Flutter Movie App',
-          color: Colors.white,
+          text: 'Flutter Movie App🍿',
           fontSize: 21,
         ),
       ),
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.grey[950],
       body: ListView(
         children: [
           TvList(

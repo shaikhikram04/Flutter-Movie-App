@@ -5,21 +5,23 @@ class ModifiedText extends StatelessWidget {
   const ModifiedText({
     super.key,
     required this.text,
-    required this.color,
+    this.color = Colors.white,
     required this.fontSize,
+    this.maxLine = 2,
   });
 
   final String text;
   final Color color;
   final double fontSize;
+  final int? maxLine;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       style: GoogleFonts.breeSerif(color: color, fontSize: fontSize),
-      overflow: TextOverflow.ellipsis,
-      maxLines: 2,
+      overflow: maxLine != null ? TextOverflow.ellipsis : null,
+      maxLines: maxLine,
     );
   }
 }
